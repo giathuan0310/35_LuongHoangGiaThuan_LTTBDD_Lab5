@@ -24,7 +24,7 @@ export default function App({ navigation }) {
                 {/* Nút cho Sign In */}
                 <TouchableOpacity 
                     style={[styles.buttonStyle, { backgroundColor: 'green' }]}
-                    onPress={() => navigation.navigate('SignIn')} // Điều hướng đến màn hình Sign In
+                    onPress={() => navigation.navigate('Screen_02')} // Điều hướng đến màn hình Sign In
                 >
                     <Text style={styles.buttonText}>Sign In</Text>
                 </TouchableOpacity>
@@ -32,7 +32,7 @@ export default function App({ navigation }) {
                 {/* Nút cho Sign Up */}
                 <TouchableOpacity 
                     style={[styles.buttonStyle, { backgroundColor: 'blue', marginTop: 20 }]}
-                    onPress={() => navigation.navigate('SignUp')} // Điều hướng đến màn hình Sign Up
+                    onPress={() => navigation.navigate('Screen_03')} // Điều hướng đến màn hình Sign Up
                 >
                     <Text style={styles.buttonText}>Sign Up</Text>
                 </TouchableOpacity>
