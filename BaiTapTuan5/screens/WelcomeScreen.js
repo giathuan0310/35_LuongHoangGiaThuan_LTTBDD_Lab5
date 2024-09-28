@@ -1,167 +1,168 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View,
-    ScrollView,Image,TextInput,
-    TouchableOpacity, FlatList } from "react-native";
-import React, {useState} from 'react';
+import React, { useState } from 'react';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
-export default function App({navigation}){
-    const [data, setData] = useState([
-        {key: '1', type: 'Vegetable',name: 'Apple', price: '28.00',image: require('../assets/DATA/De_03_Screen_02.png')},
-        
-    ])
+const WelcomeScreen = ({ navigation, route}) => {
+    const { users } = route.params || {users: []};
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [isFocusedEmail, setIsFocusedEmail] = useState(false);
+    const [isFocusedPassword, setIsFocusedPassword] = useState(false);
 
-    const [type, setType] = useState('Vegetable');
-    const [selectedBtn, setSelectedBtn] = useState('Vegetable');
-    const [inititalItemCount, setInitialItemCount] = useState(6);
+    const handleLogin = () => {
+        const userFound = users.find(user => user.email === email && user.password === password);
+        if(userFound){
+            alert(`Welcome, ${userFound.userName}!`);
+            navigation.navigate('ProductScreen');
+        } else {
+            alert('Email hoặc password không hợp lệ');
+        }
+    };
 
     return (
-        <ScrollView stickyHeaderIndices={[0]}>
-            <View style={{
-                width: '100%',
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                paddingHorizontal: 20,
-                paddingVertical: 10,
-                backgroundColor: 'white',
-            }}>
-                <TouchableOpacity
-                 onPress={() => {navigation.navigate("Screen_01")}}
-                >
-                
-                </TouchableOpacity>
+        <View style={styles.container}>
+            <Image source={require('../assets/DATA/Image 20.png')} style={styles.logo} />
+            <View style={styles.contentContainer}>
+                <Text style={styles.welcomeText}>Welcome!</Text>
 
-            </View>
-
-            <View style={{
-                width: '100%',
-            }}>
-                <TextInput
-                   style ={{
-                    borderWidth: 1,
-                    borderColor: 'gray',
-                    borderRadius: 10,
-                    width: '90%',
-                    height: 50,
-                    alignSelf: 'center',
-                    marginTop: 20,
-                    paddingLeft: 20,
-                    fontSize: 20,
-                    }}
-                    placeholder="Search"
-                />
-            </View>
-
-            <View style={{
-                width: '100%',
-                flexDirection: 'row',
-                justifyContent: 'center',
-                paddingHorizontal: 20,
-                marginTop: 20,
-            }}>
-                <TouchableOpacity style={{
-                    borderWidth: 1,
-                    padding: 10,
-                    borderRadius: 40,
-                    backgroundColor: type == 'Vegetable' ? 'green' : 'white',
-                }}
-                onPress={() => {setType('Vegetable')
-                setInitialItemCount(6)
-                }}
-                >
-                <Text style={{
-                    fontSize: 18,
-                    fontWeight: 'bold',
-                    color: 'blue',
-                }}>Vegetable</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={{
-                    borderWidth: 1,
-                    padding: 10,
-                    borderRadius: 40,
-                    backgroundColor: type == 'Seafood' ? 'green' : 'white',
-                }}
-                onPress={() => {setType('Seafood')
-                setInitialItemCount(6)
-            }}
-                >
-                <Text style={{
-                    fontSize: 20,
-                    fontWeight: 'bold',
-                    color: 'blue',
-                }}>Seafood</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={{
-                    borderWidth: 1,
-                    padding: 10,
-                    borderRadius: 40,
-                    backgroundColor: type == 'Drinks' ? 'green' : 'white',
-                }}
-                onPress={() => {setType('Drink')
-                setInitialItemCount(6)
-            }}
-                >
-                <Text style={{
-                    fontSize: 20,
-                    fontWeight: 'bold',
-                    color: 'blue',
-                }}>Drinks</Text>
-                </TouchableOpacity>
-
-            </View>
-
-            <View style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                paddingHorizontal: 20,
-                marginTop: 20,
-            }}>
-
-            <Text style={{
-                fontSize: 25,
-                color: 'green',
-            }}>Order your favorite</Text>
-            <TouchableOpacity onPress={() => {setInitialItemCount(data.length)}}   >
-            <Text style={{fontSize: 25, color: 'pink'}}>See all</Text> 
-            </TouchableOpacity>
-            
-            </View>
-
-            <FlatList
-                data={((data.filter((item) => item.type == type))).slice(0,inititalItemCount)}
-                renderItem={({item}) => (
-                <View style={{
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    width: '45%',
-                    marginHorizontal: '2.5%',
-                    marginVertical: 10,
-                    padding: 15,
-                }}>
-                    <TouchableOpacity
-                        onPress={() => {navigation.navigate('Screen_03')}}
-                    >
-                    <Image source={item.image}
-                        style={{
-                            width: 150,
-                            height: 150,
-                        }}
-                        resizeMode="contain"/>
-                    </TouchableOpacity> 
-                    <Text style={{fontSize: 20, fontWeight: 'bold', marginTop: 10}}>{item.name}</Text> 
+                <View style={styles.inputWrapper}>
+                    <Text style={styles.label}>Email</Text>
+                    <View style={[styles.inputContainer, isFocusedEmail && styles.inputContainerFocused]}>
+                        <Image source={require('../assets/DATA/Vector.png')} style={styles.icon} />
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Enter email"
+                            placeholderTextColor="#aaa"
+                            keyboardType="email-address"
+                            onFocus={() => setIsFocusedEmail(true)}
+                            onBlur={() => setIsFocusedEmail(false)}
+                            onChangeText={setEmail}
+                        />
+                    </View>
                 </View>
-                )}
-            />
-        </ScrollView>
+
+                <View style={styles.inputWrapper}>
+                    <Text style={styles.label}>Password</Text>
+                    <View style={[styles.inputContainer, isFocusedPassword && styles.inputContainerFocused]}>
+                        <Image source={require('../assets/DATA/lock.png')} style={styles.icon} />
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Enter password"
+                            placeholderTextColor="#aaa"
+                            secureTextEntry
+                            onFocus={() => setIsFocusedPassword(true)}
+                            onBlur={() => setIsFocusedPassword(false)}
+                            onChangeText={setPassword}
+                        />
+                    </View>
+                </View>
+
+                <TouchableOpacity style={styles.button} onPress={handleLogin}>
+                    <Text style={styles.buttonText}>Login</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    style={styles.backButton}
+                    onPress={() => navigation.navigate('HomeScreen')}
+                >
+                    <FontAwesome name="arrow-left" size={20} color="#00bdd6" />
+                    <Text style={styles.backButtonText}>Back to Home</Text>
+                </TouchableOpacity>
+            </View>
+        </View>
     );
-}
+};
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        justifyContent: 'flex-start',
         alignItems: 'center',
-        justifyContent: 'center',
+        backgroundColor: '#f0f0f0',
+        paddingHorizontal: 0,
+        paddingTop: 50,
+    },
+    logo: {
+        width: '100%',
+        height: 200,
+        resizeMode: 'cover',
+        position: 'absolute',
+        top: 0,
+    },
+    contentContainer: {
+        backgroundColor: '#fff',
+        padding: 20,
+        borderRadius: 20,
+        alignItems: 'center',
+        width: '100%',
+        height: '100%',
+        shadowColor: '#000',
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 5,
+        marginTop: 135,
+    },
+    welcomeText: {
+        fontSize: 32,
+        fontWeight: 'bold',
+        marginBottom: 40,
+        alignSelf: 'flex-start',
+    },
+    inputWrapper: {
+        width: '100%',
+        marginBottom: 20,
+    },
+    label: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: '#333',
+        marginBottom: 5,
+    },
+    inputContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderWidth: 1,
+        borderColor: '#bababa',
+        borderRadius: 12,
+        paddingHorizontal: 10,
+    },
+    inputContainerFocused: {
+        borderColor: 'black', // Đổi màu viền khi ô input được nhấn
+    },
+    icon: {
+        width: 20,
+        height: 20,
+        marginRight: 10,
+    },
+    input: {
+        flex: 1,
+        paddingVertical: 10,
+        paddingHorizontal: 5,
+        outlineWidth: 0,
+    },
+    button: {
+        width: '100%',
+        backgroundColor: '#00bdd6',
+        borderRadius: 12,
+        paddingVertical: 12,
+        alignItems: 'center',
+        marginTop: 20,
+    },
+    buttonText: {
+        color: '#fff',
+        fontSize: 16,
+        fontWeight: 'bold',
+    },
+    backButton: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginTop: 20,
+    },
+    backButtonText: {
+        color: '#00bdd6',
+        marginLeft: 10,
+        fontSize: 16,
     },
 });
+
+export default WelcomeScreen;
