@@ -24,7 +24,7 @@ export default function App({ navigation }) {
                 {/* Nút cho Sign In */}
                 <TouchableOpacity 
                     style={[styles.buttonStyle, { backgroundColor: 'green' }]}
-                    onPress={() => navigation.navigate('Screen_02')} // Điều hướng đến màn hình Sign In
+                    onPress={() => navigation.navigate('SignupScreen')} // Điều hướng đến màn hình Sign In
                 >
                     <Text style={styles.buttonText}>Sign In</Text>
                 </TouchableOpacity>
