@@ -43,6 +43,7 @@ const ProductScreen = () => {
     const total = (price * quantity).toFixed(2);
     
     return (
+        
         <View style={styles.container}>
             <View style = {styles.productContainer}>
                 <View style = {styles.gridContainer}>
@@ -105,16 +106,7 @@ const ProductScreen = () => {
                     <FontAwesome name='chevron-right' size={16} color="#aaa" style={styles.arrowIconsizeguide} />
                 </View>
 
-                <View style={styles.headerContainer}>
-                    <TouchableOpacity style={styles.reviewsLink}>
-                        <Text style={[styles.reviewsText, {fontSize:20,fontWeight:'bold'}]}>Reviews (99)</Text>
-                    </TouchableOpacity>
-                    <FontAwesome name='chevron-right' size={16} color="#aaa" style={styles.arrowIcon}/>
-                </View>
-
-                <TouchableOpacity style={styles.addToCartButton}>
-                    <Text style={styles.addToCartButtonText}>Add to Cart</Text>
-                </TouchableOpacity>
+               
             </View>
         </View>
     );
