@@ -16,7 +16,7 @@ const SignupScreen = ({navigation}) => {
             const newUser = {userName, email, password};
             setUsers([...users,newUser]);
             alert('Đăng ký thành công!');
-            navigation.navigate('Welcome',{users:[...users,newUser]});
+            navigation.navigate('WelcomeScreen',{users:[...users,newUser]});
         } else{
             alert('Vui lòng tích vào ô');
         }
