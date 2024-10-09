@@ -25,7 +25,7 @@ const WelcomeScreen = ({ navigation, route}) => {
     return (
         <View style={styles.container}>
             {/* Hình logo */}
-            <Image source={require('../assets/DATA/Image 20.png')} style={styles.logo} />
+            <Image source={require('../assets/DATA/Image20.png')} style={styles.logo} />
 
             {/* Container chứa nội dung */}
             <View style={styles.contentContainer}>

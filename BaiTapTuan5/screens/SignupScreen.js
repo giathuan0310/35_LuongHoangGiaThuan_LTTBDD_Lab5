@@ -40,7 +40,7 @@ const SignupScreen = ({ navigation }) => {
             <View style={styles.container}>
 
                 {/* Hình ảnh logo */}
-                <Image source={require('../assets/DATA/Image 19.png')} style={styles.image} />
+                <Image source={require('../assets/DATA/Image19.png')} style={styles.image} />
                 
                 {/* Tiêu đề chính */}
                 <Text style={styles.title}>Nice to see you!</Text>

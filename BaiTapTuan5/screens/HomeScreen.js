@@ -14,7 +14,7 @@ export default function App({ navigation }) {
             <View style={styles.style2}>
                 {/* Giữ nguyên hình ảnh nhưng không bị cắt ngang */}
                 <Image 
-                    source={require('../assets/DATA/Container 17.png')}
+                    source={require('../assets/DATA/Container17.png')}
                     style={styles.imageStyle}
                     resizeMode="contain" // Đảm bảo hình ảnh không bị cắt, giữ nguyên tỉ lệ
                 />

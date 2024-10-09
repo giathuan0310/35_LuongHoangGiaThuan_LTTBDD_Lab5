@@ -9,11 +9,11 @@ const ProductScreen = () => {
 
     // Danh sách các mục sản phẩm, mỗi mục chứa hình ảnh
     const gridItems = [
-        { id: 1, image: require('../assets/DATA/Container 7 (3).png') }, 
-        { id: 2, image: require('../assets/DATA/Image 7 (2).png')},
-        { id: 3, image: require('../assets/DATA/Image 7 (1).png')},
-        { id: 4, image: require('../assets/DATA/Image 7 (4).png')},
-        { id: 5, image: require('../assets/DATA/Image 7.png')},
+        { id: 1, image: require('../assets/DATA/Container7(3).png') }, 
+        { id: 2, image: require('../assets/DATA/Image7(2).png')},
+        { id: 3, image: require('../assets/DATA/Image7(1).png')},
+        { id: 4, image: require('../assets/DATA/Image7(4).png')},
+        { id: 5, image: require('../assets/DATA/Image7.png')},
     ];
 
     // Xử lý khi chọn vào một hình ảnh nhỏ
@@ -74,7 +74,7 @@ const ProductScreen = () => {
                     <Text style={styles.productSubtitle}>Occaecat est deserunt tempor offici</Text> {/* Mô tả ngắn */}
                     <View style={styles.ratingContainer}>
                         <Image
-                            source={require('../assets/DATA/Rating 3.png')}
+                            source={require('../assets/DATA/Rating3.png')}
                             style ={styles.starIcon}
                         />
                         <Text style={styles.ratingText}>4.5</Text> {/* Đánh giá sản phẩm */}
@@ -121,6 +121,8 @@ const ProductScreen = () => {
                     </TouchableOpacity>
                     <FontAwesome name='chevron-right' size={16} color="#aaa" style={styles.arrowIconsizeguide} /> {/* Mũi tên hướng dẫn kích thước */}
                 </View>
+
+                
             </View>
         </View>
     );
